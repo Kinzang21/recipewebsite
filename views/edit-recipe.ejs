@@ -1,0 +1,13 @@
+<form action="/recipes/<%= recipe.id %>?_method=PUT" method="POST" enctype="multipart/form-data">
+    <!-- ... existing form fields ... -->
+    <div class="form-group">
+        <label for="image">Recipe Image:</label>
+        <% if (recipe.image_url) { %>
+            <img src="/uploads/<%= recipe.image_url %>" alt="Current recipe image" style="max-width: 200px; margin: 10px 0;">
+            <p>Current image: <%= recipe.image_url %></p>
+        <% } %>
+        <input type="file" class="form-control" id="image" name="image" accept="image/*">
+        <small class="form-text text-muted">Leave empty to keep the current image</small>
+    </div>
+    <!-- ... existing code ... -->
+</form> 

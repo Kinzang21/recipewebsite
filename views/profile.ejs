@@ -1,0 +1,164 @@
+<%- include('partials/header', { userId, currentPage: 'profile' }) %>
+<body>
+  <h1 class="page-title">Your Recipes</h1>
+
+  <% if (recipes.length === 0) { %>
+    <p class="no-recipes">You have not added any recipes yet.</p>
+  <% } else { %>
+    <div class="recipes-grid">
+      <% recipes.forEach(recipe => { %>
+        <div class="recipe-card">
+          <% if (recipe.image_url) { %>
+            <div class="recipe-image">
+              <img src="/uploads/<%= recipe.image_url %>" alt="<%= recipe.title %>" style="width: 100%; height: 200px; object-fit: cover;">
+            </div>
+          <% } %>
+          <div class="recipe-content">
+            <h3><%= recipe.title %></h3>
+            <div class="recipe-details">
+              <div class="recipe-info">
+                <i class="far fa-clock"></i>
+                <span><%= recipe.cooking_time %></span>
+              </div>
+              <div class="recipe-info">
+                <i class="fas fa-utensils"></i>
+                <span><%= recipe.category %></span>
+              </div>
+            </div>
+            <div class="recipe-actions">
+              <a href="/profile/recipes/<%= recipe.id %>/edit" class="edit-button">
+                <i class="fas fa-edit"></i>
+                Edit Recipe
+              </a>
+            </div>
+          </div>
+        </div>
+      <% }) %>
+    </div>
+  <% } %>
+
+  <%- include('partials/footer') %>
+
+  <style>
+    body {
+      padding: 20px;
+      background-color: #f9fafb;
+    }
+
+    h1 {
+      color: #1f2937;
+      margin-bottom: 24px;
+      font-size: 2.5rem;
+    }
+
+    .no-recipes {
+      text-align: center;
+      color: #6b7280;
+      font-size: 1.1rem;
+      margin-top: 2rem;
+    }
+
+    .recipes-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+      gap: 24px;
+      padding: 0 10px;
+    }
+
+    .recipe-card {
+      background-color: white;
+      border-radius: 12px;
+      overflow: hidden;
+      border: 1px solid #e5e7eb;
+      box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+
+    .recipe-card:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.1);
+    }
+
+    .recipe-image {
+      position: relative;
+      height: 200px;
+      overflow: hidden;
+    }
+
+    .recipe-image img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.3s ease;
+    }
+
+    .recipe-card:hover .recipe-image img {
+      transform: scale(1.05);
+    }
+
+    .recipe-content {
+      padding: 16px;
+    }
+
+    .recipe-content h3 {
+      font-size: 1.25rem;
+      font-weight: 600;
+      color: #1f2937;
+      margin-bottom: 12px;
+      line-height: 1.4;
+    }
+
+    .recipe-details {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 16px;
+      margin-top: 12px;
+      margin-bottom: 16px;
+    }
+
+    .recipe-info {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      color: #6b7280;
+      font-size: 0.9rem;
+    }
+
+    .recipe-info i {
+      color: #4b5563;
+    }
+
+    .recipe-actions {
+      margin-top: 16px;
+      border-top: 1px solid #e5e7eb;
+      padding-top: 16px;
+    }
+
+    .edit-button {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      padding: 8px 16px;
+      background-color: #3b82f6;
+      color: white;
+      border-radius: 6px;
+      text-decoration: none;
+      font-size: 0.9rem;
+      transition: background-color 0.2s;
+    }
+
+    .edit-button:hover {
+      background-color: #2563eb;
+    }
+
+    @media (max-width: 768px) {
+      .recipes-grid {
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 16px;
+      }
+
+      h1 {
+        font-size: 2rem;
+      }
+    }
+  </style>

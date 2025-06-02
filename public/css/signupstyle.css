@@ -1,0 +1,59 @@
+body {
+    background: #eee;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: Arial, sans-serif;
+}
+/* Centering the Signup Form */
+.signup-container {
+    width: 320px;
+    margin: 0 auto;
+    padding: 20px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    align-items: center;
+}
+
+/* Form Styling */
+.signup-form {
+    padding: 10px;
+    width: 300px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+
+/* Input Fields */
+.signup-form input {
+    width: 100%;
+    padding: 10px;
+    margin-bottom: 5px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    font-size: 16px;
+}
+
+
+.signup-form input:focus {
+    border-color: #320699;
+}
+/* Signup Button */
+.signup-form button {
+    padding: 10px;
+    font-size: 1.1em;
+    background: #0e11b7;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background 0.3s ease;
+}
+
+
+.signup-form button:hover {
+    background: #04972e;
+}

@@ -1,0 +1,102 @@
+body {
+    background: #eee;
+    width: 100%;
+    margin: 0;
+    font-family: 'Poppins', Arial, sans-serif;
+    color: #333;
+    line-height: 1.6;
+}
+/* Centering the login Form */
+.details-container {
+    max-width: 800px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background-color: #ffffff;
+    border-radius: 12px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.recipe-header {
+    text-align: center;
+    margin-bottom: 2rem;
+    padding-bottom: 1.5rem;
+    border-bottom: 1px solid #eee;
+}
+
+.recipe-header h1 {
+    color: #333;
+    margin: 0 0 1rem 0;
+    font-size: 2.5rem;
+    font-weight: 700;
+}
+
+.recipe-meta {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 1.5rem;
+    color: #666;
+    font-size: 1.1rem;
+}
+
+.recipe-section {
+    margin-bottom: 2rem;
+}
+
+.recipe-section h2 {
+    color: #444;
+    font-size: 1.5rem;
+    margin-bottom: 1rem;
+    font-weight: 600;
+}
+
+.content-box {
+    background-color: #f8f9fa;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    padding: 1.5rem;
+    line-height: 1.8;
+    font-size: 1.1rem;
+}
+
+.error-message {
+    color: #dc3545;
+    background-color: #f8d7da;
+    border: 1px solid #f5c6cb;
+    border-radius: 6px;
+    padding: 0.75rem;
+    margin-bottom: 1.5rem;
+    text-align: center;
+}
+
+.author {
+    font-weight: 500;
+}
+
+.category, .cooking-time {
+    color: #666;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .details-container {
+        margin: 1rem;
+        padding: 1.5rem;
+    }
+
+    .recipe-header h1 {
+        font-size: 2rem;
+    }
+
+    .recipe-meta {
+        flex-direction: column;
+        gap: 0.5rem;
+        align-items: center;
+    }
+
+    .content-box {
+        padding: 1rem;
+    }
+}
+
+

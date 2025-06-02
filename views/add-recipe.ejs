@@ -1,0 +1,144 @@
+<%- include('partials/header', { userId, currentPage: 'add-recipe' }) %>
+<div class="add-recipe-form"> 
+  <h1>Add New Recipe</h1>
+
+  <% if (error) { %>
+    <p class="error-message"><%= error %></p>
+  <% } %>
+
+  <form action="/recipes/add" method="POST" enctype="multipart/form-data">
+    <div class="form-group">
+      <label>Title:</label>
+      <input type="text" name="title" placeholder="Recipe Title" class="form-input" required />
+    </div>
+
+    <div class="form-group">
+      <label>Ingredients:</label>
+      <textarea name="ingredients" placeholder="Enter ingredients (one per line)" rows="5" class="form-input" required></textarea>
+    </div>
+
+    <div class="form-group">
+      <label>Steps:</label>
+      <textarea name="steps" placeholder="Enter preparation steps (one per line)" rows="5" class="form-input" required></textarea>
+    </div>
+
+    <div class="form-group">
+      <label>Cooking Time:</label>
+      <input type="text" name="cookingTime" placeholder="e.g., 30 mins" class="form-input" required />
+    </div>
+
+    <div class="form-group">
+      <label>Category:</label>
+      <input type="text" name="category" placeholder="e.g., Dessert, Main Course" class="form-input" required />
+    </div>
+
+    <div class="form-group">
+      <label for="image">Recipe Image:</label>
+      <input type="file" class="form-control" id="image" name="image" accept="image/*">
+    </div>
+
+    <div class="button-group">
+      <button type="submit" class="save-button">Add Recipe</button>
+    </div>
+  </form>
+</div>
+
+<%- include('partials/footer') %>
+
+<style>
+.add-recipe-form {
+  max-width: 700px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.add-recipe-form h1 {
+  font-family: 'Poppins', Arial, sans-serif;
+  color: #333;
+  margin-bottom: 2rem;
+  font-size: 2rem;
+  text-align: center;
+  font-weight: 600;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+  text-align: left;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #555;
+  font-weight: 500;
+  font-size: 1rem;
+}
+
+.form-input {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+  box-sizing: border-box;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: #4CAF50;
+  box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.1);
+}
+
+textarea.form-input {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.button-group {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.save-button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
+  width: auto;
+}
+
+.save-button:hover {
+  background-color: #45a049;
+}
+
+.error-message {
+  color: #dc3545;
+  background-color: #f8d7da;
+  border: 1px solid #f5c6cb;
+  border-radius: 6px;
+  padding: 0.75rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+@media (max-width: 768px) {
+  .add-recipe-form {
+    margin: 1rem;
+    padding: 1.5rem;
+  }
+
+  .button-group button {
+    width: 100%;
+  }
+}
+</style>

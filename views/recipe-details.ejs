@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title><%= recipe ? recipe.title : 'Recipe Details' %></title>
+  <link rel="stylesheet" href="/css/details.css" />
+</head>
+<body>
+    <%- include('partials/header', { userId, currentPage: 'recipe-details' }) %>
+
+  <div class="details-container">
+
+    <% if (!recipe) { %>
+      <p class="error-message"><%= error %></p>
+    <% } else { %>
+      <div class="recipe-header">
+        <h1><%= recipe.title %></h1>
+        <% if (recipe.image_url) { %>
+          <div class="recipe-image">
+            <img src="/uploads/<%= recipe.image_url %>" alt="<%= recipe.title %>" style="max-width: 100%; height: auto; margin: 20px 0;">
+          </div>
+        <% } %>
+        <div class="recipe-meta">
+          <span class="author">By <%= recipe.username %></span>
+          <span class="category">Category: <%= recipe.category || 'N/A' %></span>
+          <span class="cooking-time">Cooking Time: <%= recipe.cooking_time || 'N/A' %></span>
+        </div>
+      </div>
+
+      <div class="recipe-section">
+        <h2>Ingredients</h2>
+        <div class="content-box">
+          <%- recipe.ingredients.replace(/\n/g, '<br>') %>
+        </div>
+      </div>
+
+      <div class="recipe-section">
+        <h2>Steps</h2>
+        <div class="content-box">
+          <%- recipe.steps.replace(/\n/g, '<br>') %>
+        </div>
+      </div>
+    <% } %>
+  </div>
+<%- include('partials/footer') %>
+</body>
+</html>

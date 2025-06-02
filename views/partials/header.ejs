@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Recipe Website</title>
+  <link rel="stylesheet" href="/css/style.css" />
+  <!-- Add Font Awesome CDN -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+</head>
+<body>
+  <header>
+    <section class="headertop">
+      <h1>Recipe Website</h1>
+
+      <% 
+        // "page" will be either the value of currentPage, or the empty string if undefined
+        const page = (typeof currentPage !== 'undefined') ? currentPage : ''; 
+      %>
+
+      <% if (userId) { %>
+        <section class="user-info">
+          <div class="add-logout">
+            <button onclick="location.href='/logout'" class="logout-button">
+              <i class="fas fa-sign-out-alt button-icon"></i>
+              Logout
+            </button>
+            <button onclick="location.href='/recipes/add'" class="addrecipe-button">
+              <i class="fas fa-plus button-icon"></i>
+              Add Recipe
+            </button>
+
+            <!-- Show "Home" if we're on the Profile page, else show "Profile" -->
+            <% if (page === 'profile') { %>
+              <button onclick="location.href='/'" class="home-button">
+                <i class="fas fa-home button-icon"></i>
+                Home
+              </button>
+            <% } else { %>
+              <button onclick="location.href='/profile'" class="profile-button">
+                <i class="fas fa-user button-icon"></i>
+                Profile
+              </button>
+            <% } %>
+          </div>
+        </section>
+      <% } else { %>
+        <section class="auth-buttons">
+          <button onclick="location.href='/signup'" class="signup-button">
+            <i class="fas fa-user-plus button-icon"></i>
+            Sign Up
+          </button>
+          <button onclick="location.href='/login'" class="login-button">
+            <i class="fas fa-sign-in-alt button-icon"></i>
+            Log In
+          </button>
+        </section>
+      <% } %>
+    </section>
+      <form action="/search" method="get" class="search-form">
+        <input
+          type="text"
+          name="q"
+          placeholder="Search recipes..."
+          class="search-input"
+        />
+      </form>
+  </header>
+  <main>

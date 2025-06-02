@@ -1,0 +1,225 @@
+<%- include('partials/header', {
+  userId, 
+  currentPage: 'profile'
+}) %>
+<div class="edit-recipe-form">
+  <h1>Edit My Recipe</h1>
+
+<% if (error) { %>
+  <p class="error-message"><%= error %></p>
+<% } %>
+
+<form action="/profile/recipes/<%= recipe.id %>/edit" method="POST" enctype="multipart/form-data">
+  <div class="form-group">
+    <label>Title:</label>
+    <input
+      type="text"
+      name="title"
+      value="<%= recipe.title %>"
+      class="form-input"
+      required
+    />
+  </div>
+
+  <div class="form-group">
+    <label>Ingredients:</label>
+    <textarea name="ingredients" rows="5" class="form-input" required><%= recipe.ingredients %></textarea>
+  </div>
+
+  <div class="form-group">
+    <label>Steps:</label>
+    <textarea name="steps" rows="5" class="form-input" required><%= recipe.steps %></textarea>
+  </div>
+
+  <div class="form-group">
+    <label>Cooking Time:</label>
+    <input
+      type="text"
+      name="cookingTime"
+      value="<%= recipe.cooking_time %>"
+      class="form-input"
+      required
+    />
+  </div>
+
+  <div class="form-group">
+    <label>Category:</label>
+    <input
+      type="text"
+      name="category"
+      value="<%= recipe.category %>"
+      class="form-input"
+      required
+    />
+  </div>
+
+  <div class="form-group">
+    <label>Recipe Image:</label>
+    <% if (recipe.image_url) { %>
+      <div class="current-image">
+        <img src="/uploads/<%= recipe.image_url %>" alt="Current recipe image" style="max-width: 200px; margin: 10px 0;">
+        <p class="image-name">Current image: <%= recipe.image_url %></p>
+      </div>
+    <% } %>
+    <input type="file" class="form-control" id="image" name="image" accept="image/*">
+    <small class="form-text text-muted">Leave empty to keep the current image</small>
+  </div>
+
+  <div class="button-group">
+    <button type="submit" class="save-button">Save Changes</button>
+
+    <!-- DELETE FORM -->
+    <form 
+      action="/recipes/delete/<%= recipe.id %>?_method=DELETE" 
+      method="POST" 
+      onsubmit="return confirm('Are you sure you want to delete this recipe?');"
+      class="delete-form"
+    >
+      <button type="submit" class="delete-button">
+        Delete Recipe
+      </button>
+    </form>
+  </div>
+</form>
+</div>
+
+<%- include('partials/footer') %>
+<style>
+.edit-recipe-form {
+  max-width: 700px;
+  margin: 2rem auto;
+  padding: 2rem;
+  background-color: #ffffff;
+  border-radius: 12px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.edit-recipe-form h1 {
+  color: #333;
+  margin-bottom: 2rem;
+  font-size: 2rem;
+  text-align: center;
+}
+
+.form-group {
+  margin-bottom: 1.5rem;
+  text-align: left;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 0.5rem;
+  color: #555;
+  font-weight: 500;
+  font-size: 1rem;
+}
+
+.form-input {
+  width: 100%;
+  padding: 0.75rem;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-size: 1rem;
+  transition: border-color 0.3s ease;
+  box-sizing: border-box;
+}
+
+.form-input:focus {
+  outline: none;
+  border-color: #4CAF50;
+  box-shadow: 0 0 0 2px rgba(76, 175, 80, 0.1);
+}
+
+textarea.form-input {
+  resize: vertical;
+  min-height: 120px;
+}
+
+.button-group {
+  display: flex;
+  gap: 1rem;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.save-button {
+  background-color: #4CAF50;
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
+}
+
+.save-button:hover {
+  background-color: #45a049;
+}
+
+.delete-button {
+  background-color: #dc3545;
+  color: white;
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: background-color 0.3s ease;
+}
+
+.delete-button:hover {
+  background-color: #c82333;
+}
+
+.error-message {
+  color: #dc3545;
+  background-color: #f8d7da;
+  border: 1px solid #f5c6cb;
+  border-radius: 6px;
+  padding: 0.75rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+}
+
+.delete-form {
+  margin: 0;
+}
+
+.current-image {
+  margin: 10px 0;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  background-color: #f8f9fa;
+}
+
+.image-name {
+  margin: 5px 0;
+  color: #666;
+  font-size: 0.9rem;
+}
+
+.form-text {
+  color: #6c757d;
+  font-size: 0.875rem;
+  margin-top: 0.25rem;
+}
+
+@media (max-width: 768px) {
+  .edit-recipe-form {
+    margin: 1rem;
+    padding: 1.5rem;
+  }
+
+  .button-group {
+    flex-direction: column;
+  }
+
+  .button-group button {
+    width: 100%;
+  }
+}
+</style>
