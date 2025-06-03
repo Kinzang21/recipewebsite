@@ -4,6 +4,8 @@ const path = require('path');
 const bodyParser = require('body-parser');
 const flash = require('connect-flash');
 const multer = require('multer');
+
+require('dotenv').config();
 const app = express();
 
 // ─── Configure “public/uploads” as a static folder ───
@@ -65,7 +67,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.urlencoded({ extended: false }));
 
 app.use(session({
-  secret: 'yourSecretKey', // use a strong secret in production
+  secret: process.env.SESSION_SECRET, // use a strong secret in production
   resave: false,
   saveUninitialized: false,
   cookie: { secure: false } // set to true if using HTTPS
